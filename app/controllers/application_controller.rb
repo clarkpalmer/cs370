@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
     end
 
     if !(session[:tutee_id].to_i == tutee_id.to_i)
+      sign_out :tutee
       redirect_to new_tutee_session_path
     end
   end
@@ -59,6 +60,7 @@ class ApplicationController < ActionController::Base
     end
 
     if !(session[:tutor_id].to_i == tutor_id.to_i)
+      sign_out :tutor
       redirect_to new_tutor_session_path
     end
   end

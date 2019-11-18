@@ -1,7 +1,7 @@
 require 'date'
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :edit, :update, :find_students]
-  before_action :check_tutor_logged_in, only: [:show]
+  before_action :check_tutor_logged_in, only: [:index, :show]
 
 
   # GET /tutors
