@@ -14,10 +14,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
   # return the path based on resource
-    begin
+    puts resource
+    if resource.is_a? Tutor
       session[:tutor_id] = resource.id
       tutor_path(current_tutor)
-    rescue => exception
+    else
       session[:tutee_id] = resource.id
       tutee_path(current_tutee)
     end
