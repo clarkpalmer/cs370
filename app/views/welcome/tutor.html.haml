@@ -10,7 +10,7 @@
       #login-row.row.justify-content-center.align-items-center
         #login-column.col-md-6
           #login-box.col-md-12
-            %form#login-form.form{:action => new_tutor_path, :method => 'post'}
+            %form#login-form.form{:action => welcome_login_path, :method => 'post'}
               %h3.text-center.text-info Login
               .form-group
                 %label.text-info{:for => 'username'} Username:
@@ -19,11 +19,11 @@
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"}/
               .form-group
 
-                -# Need to figure out how to auto generate password and other links as in students. 
-                %label.text-info{:for => "password"} Password:
-                %br/
-                %input#password.form-control{:name => "password", :type => "text", :placeholder => 'password'}/
-                %br/
+                -# If you want to add a password feature uncomment the code below
+                -#%label.text-info{:for => "password"} Password:
+                -#%br/
+                -#%input#password.form-control{:name => "password", :type => "text", :placeholder => 'password'}/
+                -#%br/
 
                 %input.btn.btn-info.btn-md{:name => 'submit', :type => 'submit', :value => 'submit'}/
               .form-group

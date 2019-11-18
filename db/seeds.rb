@@ -27,24 +27,24 @@ course_list = ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16
 #                         :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4+', :pronoun => 'he/his', :major => 'EECS'}
 
 tutors.each do |tutor|
-Tutor.create!(tutor)
+  Tutor.create!(tutor)
 end
 
 tutees.each do |tutee|
-Tutee.create!(tutee)
+  Tutee.create!(tutee)
 end
 
 course_list.each_with_index do |course, i|
-Course.create!(:course_num => i + 1, :name => course, :semester => "Sp2019")
+  Course.create!(:course_num => i + 1, :name => course, :semester => "Sp2019")
 # Request.create(:tutee_id => 1, :course_id => i, :subject => course)
 end
 
 course_list.each_with_index do |course, i|
-Request.create!(:tutee_id => 1, :course_id => i + 1, :subject => course)
+  Request.create!(:tutee_id => 1, :course_id => i + 1, :subject => course)
 end
 
 courses.each do |course|
-Course.create!(course)
+  Course.create!(course)
 end
 
 # requests.each do |request|
@@ -75,32 +75,26 @@ end
 #   )
 # end
 
-# 10.times do
-#   BerkeleyClass.create!(
-#       CS61A: true,
-#       CS61B: true,
-#       CS61C: true,
-#       CS70: true,
-#       EE16A: true,
-#       EE16B: true,
-#       CS88: true,
-#       CS10: true,
-#       DATA8: true
-#   )
-# end
+
+BerkeleyClass.create!(
+  CS61A: true,
+  CS61B: true,
+  CS61C: true,
+  CS70: true,
+  EE16A: true,
+  EE16B: true,
+  CS88: true,
+  CS10: true,
+  DATA8: true
+)
 
 # 10.times do
 #   Tutee.create!(tutee_cs_scholar)
 #   Tutee.create!(tutee_not_cs_scholar)
 # end
 
-BERKELEY_CLASSES = BerkeleyClass.all
-TUTORS = Tutor.all
+Tutor.first.update_column(:berkeley_classes_id, BerkeleyClass.first.id)
 
-BERKELEY_CLASSES.each_with_index do |item, index|
-TUTORS[index].update_column(:berkeley_classes_id, item.id)
-end
-
-TUTORS.each do |tutor|
-Request.create({:tutee_id => tutor.id, :course_id => 1, :subject => "tree"})
-end
+# TUTORS.each do |tutor|
+# Request.create({:tutee_id => tutor.id, :course_id => 1, :subject => "tree"})
+# end
