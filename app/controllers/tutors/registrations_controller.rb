@@ -10,10 +10,49 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def new
+    @tutor = Tutor.new
+    @berkeley_classes = BerkeleyClass.all_classes
+  end
+
   # POST /resource
   # def create
   #   super
   # end
+  def create
+    @tutor = Tutor.new(tutor_params)
+    if params[:classes].blank?
+      flash[:notice] = "You must select at least one class."
+      redirect_to new_tutor_path
+      return
+    end
+    @bc = BerkeleyClass.new(classes_params)
+    @bc.save
+    @tutor.berkeley_classes_id = @bc.id
+      if @tutor.save
+        # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+        respond_to do |format|
+          flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+          params[:id] = @tutor.id
+          format.html { redirect_to tutor_path(@tutor.id)}
+        end
+      else
+        flash[:notice] = "Tutor was not successfully created."
+        redirect_to new_tutor_path
+      end
+  end
+
+  def tutor_params
+    params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name,
+      :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major)
+  end
+
+  def classes_params
+    BerkeleyClass.all_classes.each do |current_class|
+      params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
+    end
+   params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
+  end
 
   # GET /resource/edit
   # def edit

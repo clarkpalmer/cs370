@@ -46,6 +46,7 @@ class TutorsController < ApplicationController
         # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
         respond_to do |format|
           flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+          params[:id] = @tutor.id
           format.html { redirect_to tutor_path(@tutor.id)}
         end
       else
