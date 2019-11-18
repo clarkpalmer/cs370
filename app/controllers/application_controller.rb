@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     session[:tutee_id] = nil
     session[:tutor_logged_in] = false
     session[:tutor_id] = nil
+    if resource == :tutee
+      new_tutee_session_path
+    else
+      new_tutor_session_path
+    end
   end
 
   def check_tutee_logged_in
