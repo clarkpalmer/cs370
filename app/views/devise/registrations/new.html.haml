@@ -47,11 +47,11 @@
               - if @minimum_password_length
                 %em
                   (#{@minimum_password_length} characters minimum)
-              = f.password_field :password, autocomplete: "new-password", class: 'form-control', :required => "", :minlength => 6, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
+              = f.password_field :password, autocomplete: "new-password", class: 'form-control', :required => "", :minlength => 6, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Password must be at least 6 characters')"
           .form-row
             .form-group.col-md-8
               = f.label :password_confirmation, 'Confirm Password'
-              = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', :required => "", :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', :required => "", :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Password must be at least 6 characters')"
           .form-row
             .form-group.col-md-2
               = f.label :major, 'Major'
