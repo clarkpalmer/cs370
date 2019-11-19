@@ -30,7 +30,8 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
     @bc.save
     @tutor.berkeley_classes_id = @bc.id
       if @tutor.save
-        # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+        puts 'tutor created'
         respond_to do |format|
           flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
           params[:id] = @tutor.id
