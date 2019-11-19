@@ -12,6 +12,7 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    puts tutee_params
     @tutee = Tutee.create!(tutee_params)
     if @tutee
       respond_to do |format|
@@ -28,8 +29,8 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   end
 
   def tutee_params
-    params.require(:tutee).permit( :year, :email, :first_name,
-      :last_name, :birthdate, :sid, :gender, :pronoun, :ethnicity, :dsp, :transfer, :major)
+    params.require(:tutee).permit(:year, :email, :first_name,
+      :last_name, :birthdate, :sid, :gender, :pronoun, :ethnicity, :dsp, :transfer, :major, :password, :password_confirmation, :privilege)
   end
 
   # GET /resource/edit

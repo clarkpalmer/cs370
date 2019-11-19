@@ -45,7 +45,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
 
   def tutor_params
     params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name,
-      :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major)
+      :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major, :password, :password_confirmation)
   end
 
   def classes_params
