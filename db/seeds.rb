@@ -39,9 +39,9 @@ course_list.each_with_index do |course, i|
 # Request.create(:tutee_id => 1, :course_id => i, :subject => course)
 end
 
-course_list.each_with_index do |course, i|
-  Request.create!(:tutee_id => 1, :course_id => i + 1, :subject => course)
-end
+# course_list.each_with_index do |course, i|
+#   Request.create!(:tutee_id => 1, :course_id => i + 1, :subject => course)
+# end
 
 courses.each do |course|
   Course.create!(course)
