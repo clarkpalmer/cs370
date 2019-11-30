@@ -90,5 +90,8 @@
           .form-row
             .form-group.col-md-2
         = submit_tag 'Save Changes', class: 'btn btn-primary'
+
+        = link_to "Log out", destroy_tutee_session_url, :method => :delete
+        
     .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 
