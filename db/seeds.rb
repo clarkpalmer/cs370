@@ -15,9 +15,9 @@ courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"},
 requests = [{:tutee_id => 1, :course_id => 0, :subject => "tree"},
 						{:tutee_id => 1, :course_id => 1, :subject => "recursion"},
 						{:tutee_id => 1, :course_id => 2, :subject => "linked list"}]
-meetings = [{:tutor_id => 1, :request_id => 1, :evaluation_id => 1},
-						{:tutor_id => 2, :request_id => 2, :evaluation_id => 2},
-						{:tutor_id => 1, :request_id => 3, :evaluation_id => 3}]
+meetings = [{:sid => 123456789,:tutor_id => 1, :request_id => 1, :evaluation_id => 1, :dates => [Time.now]},
+						{:sid => 123456789, :tutor_id => 2, :request_id => 2, :evaluation_id => 2, :dates => [Time.now]},
+						{:sid => 123456789, :tutor_id => 1, :request_id => 3, :evaluation_id => 3, :dates => [Time.now]}]
 evaluations = [{:knowledgeable=>5, :helpful=> 4, :clarity=>4, :final_comments => 'woopdy di scoop woop'},
 							 {:knowledgeable=>4, :helpful=> 4, :clarity=>4, :final_comments => 'awesome'},
 							 {:knowledgeable=>5, :helpful=> 5, :clarity=>4, :final_comments => 'cool'}]
