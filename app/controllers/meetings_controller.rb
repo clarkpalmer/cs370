@@ -11,12 +11,18 @@ class MeetingsController < ApplicationController
 
   def show
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @meeting = Meeting.where(:tutor_id => 1).first
-    @dates = [
-                Time.now.strftime("%a %d %H:00"),
-                (Time.now + 1000000799).strftime("%a %d %H:00"),
-                (Time.now + 2000001599).strftime("%a %d %H:00"),
-                ]
+    @meeting = Meeting.where(tutor_id: 1).first
+    if @meeting.nil?
+        @dates = [
+        Time.now.strftime("%a %d %H:00")
+        ]
+    else
+        @dates = [
+                    Time.now.strftime("%a %d %H:00"),
+                    (Time.now + 10799).strftime("%a %d %H:00"),
+                    (Time.now + 80599).strftime("%a %d %H:00"),
+                    ]
+    end
     
   end
 
