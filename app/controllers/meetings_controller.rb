@@ -3,7 +3,7 @@ class MeetingsController < ApplicationController
   layout 'tutee_layout'
 
   def meeting_params
-    params.permit(:tutee, :tutor_id, :evaluation_id, :dates, :request_id)
+    params.permit(:tutee, :tutor_id, :evaluation_id, :dates, :request_id, :tutee_id)
   end
 
   def index
@@ -11,7 +11,7 @@ class MeetingsController < ApplicationController
 
   def show
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @meeting = Meeting.where(tutor_id: 1).first
+    @meeting = Meeting.where(tutee_id: params[:tutee_id]).first
     if @meeting.nil?
         @dates = [
         Time.now.strftime("%a %d %H:00")
@@ -36,7 +36,7 @@ class MeetingsController < ApplicationController
 
   def create
     # Checks if parameters are good
-    @meeting = Meeting.create(meeting_params)
+    @meeting = Meeting.where(tutee_id: params[:tutee_id]).first
   end
 
   def update
