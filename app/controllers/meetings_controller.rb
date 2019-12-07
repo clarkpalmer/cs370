@@ -11,19 +11,13 @@ class MeetingsController < ApplicationController
 
   def show
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @meeting = Meeting.where(tutee_id: params[:tutee_id]).first
-    if @meeting.nil?
-        @dates = [
-        Time.now.strftime("%a %d %H:00")
-        ]
-    else
-        @dates = [
-                    Time.now.strftime("%a %d %H:00"),
-                    (Time.now + 10799).strftime("%a %d %H:00"),
-                    (Time.now + 80599).strftime("%a %d %H:00"),
-                    ]
+    @req = Request.where(tutee_id: params[:tutee_id])
+    @meeting = Meeting.where(request_id: @req).last
+    @eval = Evaluation.where(id: @meeting.evaluation_id).first
+
+    if not @meeting.nil?
+      @dates = @meeting.times.map {|time| time.strftime("%A %d at %H:%M")}
     end
-    
   end
 
   def new
@@ -36,7 +30,13 @@ class MeetingsController < ApplicationController
 
   def create
     # Checks if parameters are good
-    @meeting = Meeting.where(tutee_id: params[:tutee_id]).first
+    @req = Request.where(tutee_id: params[:tutee_id])
+    @meeting = Meeting.where(request_id: @req).last
+    @meeting.setTime = params[:meeting][:setTime]
+    @meeting.save!
+    @tutee = Tutee.find_by_id(params[:tutee_id])
+
+    redirect_to tutee_meeting_path(@tutee, 1)
   end
 
   def update

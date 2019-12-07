@@ -1,8 +1,17 @@
 .container-fluid
-  -if false
+  -if @meeting.nil?
     .card.mb-3
       .card-header
-        Please fill out pending evaluation forms.
+        You have no scheduled meetings.
+  -elsif not @meeting.setTime.nil?
+    -if @meeting.isExpired
+      .card.mb-3
+      .card-header
+        You have no scheduled meetings.
+    -else
+      .card.mb-3
+      .card-header
+        Your Next Meeting is Scheduled for #{@meeting.setTime.strftime("%A %d at %H:%M")}! 
   -else
     / Breadcrumbs
     %ol.breadcrumb
@@ -22,7 +31,7 @@
           .form-row
             .form-group.col-md-4
               = label :meeting, :tutee_id, 'Please pick a time:'
-              = select :meeting, :tutee_id, options_for_select(@dates), class: 'form-control'
+              = select :meeting, :setTime, options_for_select(@dates), class: 'form-control'
             
           = submit_tag 'Set Up Meeting', :id=>'setup_meeting', class: 'btn btn-primary'
 
