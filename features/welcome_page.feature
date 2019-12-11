@@ -24,13 +24,13 @@ Feature: logging into account
   Scenario: login to my account successfully
     Given I am on the welcome page
     And I press "Tutor Page"
-    And I fill in "Username:" with "a@berkeley.edu"
-    And I press "Login"
+    And I fill in "username" with "a@berkeley.edu"
+    And I press "Log in"
     Then I should see "Welcome back"
 
   Scenario: login to my account unsuccessfully
     Given I am on the welcome page
     And I press "Tutor Page"
-    And I fill in "Username:" with "e@berkeley.edu"
-    And I press "Login"
+    And I fill in "username" with "e@berkeley.edu"
+    And I press "Log in"
     Then I should see "Email 'e@berkeley.edu' does not exist"
