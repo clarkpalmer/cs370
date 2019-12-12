@@ -39,7 +39,7 @@ Feature: Create a new Tutor
     And I fill in "Sid" with "1234567890"
     And I check "classes[CS61A]"
     And I press "Create New Tutor"
-    Then I should see "Emma e was successfully created."
+    Then I should see "Emma was successfully created."
     And I should not see "CS61B"
     And I should not see "CS61C"
     And I should not see "CS70"

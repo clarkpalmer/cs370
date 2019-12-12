@@ -11,8 +11,8 @@ Feature: Edit tutor profile
 	    |true  | true | false | false | false | false | false | false | 19   |
 
 		Given the following tutors exist:
-		| type_of_tutor| grade_level | email		 | first_name | last_name |  id| berkeley_classes_id |
-	    | AI   		   | 4th      | test2@berkeley.edu | testyBoi   | lastName  | 19 | 19                |
+		| type_of_tutor| grade_level | email		 | first_name | last_name |  id| berkeley_classes_id | password  | password_confirmation | confirmed_at |
+	    | AI   		   | 4th      | test2@berkeley.edu | testyBoi   | lastName  | 19 | 19                | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
 	    
 
@@ -24,6 +24,7 @@ Feature: Edit tutor profile
 		And I check "CS61C"
 		And I check "DATA8"
 		And I press "Update"
+		Then I should be on the tutor page for "test2@berkeley.edu"
 		And I should see "CS61A"
 		And I should see "CS61C"
 		And I should see "DATA8"
@@ -48,9 +49,10 @@ Feature: Edit tutor profile
 	Scenario: tutor can not update email if provided email is invalid
 		Given I am on the home page
 		And I go to "tutor index page"
-		And I follow "Edit"
+		And I follow "Edit Profile"
 		When I fill in "Email" with "not valid email"
-
+		And I press "Update"
+		Then I should see "Enter berkeley email only"
 
 
 	Scenario: tutor update year
