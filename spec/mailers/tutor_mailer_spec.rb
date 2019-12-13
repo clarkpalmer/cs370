@@ -14,7 +14,7 @@ RSpec.describe TutorMailer, type: :mailer do
       else
         @tutee = FactoryBot.create(:tutee)
       end
-      @tutor = FactoryBot.create(:tutor)
+      @tutor = FactoryBot.create(:tutor, :password => 'password')
       @request = FactoryBot.create(:request, :tutee => @tutee, :tutor => @tutor) #@request is protected word for Cookies
       @tutor_message = "hey, I am going to be free from 3 to 4 on Wednesday"
       @eval = FactoryBot.build(:evaluation)
