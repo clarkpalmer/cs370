@@ -6,7 +6,7 @@ RSpec.describe Meeting, type: :model do
 
   it 'has a tutor' do
     meeting = Meeting.find(20)
-    @tutor1 = FactoryBot.create(:tutor, :id => 20)
+    @tutor1 = FactoryBot.create(:tutor, :id => 20, :email => 'testing@berkeley.edu', :password => 'password')
     expect(meeting.tutor).not_to be_nil
   end
 
