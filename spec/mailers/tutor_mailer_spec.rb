@@ -2,8 +2,6 @@ require "rails_helper"
 
 
 RSpec.describe TutorMailer, type: :mailer do
-  pending "add some examples to"
-
   describe "TutorMailer" do
 
   	before (:all) do
