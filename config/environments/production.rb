@@ -76,9 +76,11 @@ ActionMailer::Base.smtp_settings = {
     :address        => "smtp.gmail.com",
     :port           => '587',
     :authentication => :plain,
+    :domain => 'heroku.com',
     :user_name      => ENV['GMAIL_USERNAME'],
     :password       => ENV['GMAIL_PASSWORD'],
-    :openssl_verify_mode  => 'none'
+    :openssl_verify_mode  => 'none',
+    :enable_starttls_auto => true
 }
 config.action_mailer.raise_delivery_errors = false
 
