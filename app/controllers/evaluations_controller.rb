@@ -10,6 +10,12 @@ class EvaluationsController < ApplicationController
   def edit
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.friendly.find params[:id]
+    @meeting = Meeting.where("evaluation_id = ?", @evaluation.id).first
+    if not @meeting.nil? and not @meeting.set_time.nil?
+      @is_eval_available = @meeting.set_time < Time.now
+    else
+      @is_eval_available = true
+    end
   end
 
   def update
@@ -56,8 +62,6 @@ class EvaluationsController < ApplicationController
 
   def public_edit
      @evaluation = Evaluation.find_by_hash_id params[:id]
-     @meeting = Meeting.where("evaluation_id = ?", params[:id])
-     @is_eval_available = @meeting.set_time < Time.now
   end
 
   def public_show

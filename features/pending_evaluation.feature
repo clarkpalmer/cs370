@@ -17,7 +17,7 @@ Feature: submit evaluation
       |true  | false | false | false | false | false | false | false |40 |
       
     Given the following requests exist:
-      | tutee_id | course_id  | subject |
+      | tutee_id | course_id  | subject   |  
       | 1        | 1          | recursion  |
 
     Given the following tutors exist:
