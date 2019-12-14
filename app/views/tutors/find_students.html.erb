@@ -42,15 +42,13 @@
                     <nav>
                         <div class="nav nav-tabs card-header-tabs mx-auto text-center" id="nav-tab" role="tablist">
                             <% @true_classes.each_with_index do |true_class, index| %>
-                                <a class="nav-item nav-link<% if (true_class == @selected_class) %> active<% end %>" 
+                                <a class="nav-item nav-link<% if (index == 0) %> active<% end %>" 
                                     id="<%=true_class %>-tab"
-                                    name="<%=true_class %>-tab"
                                     data-toggle="tab" 
-                                    href="#<%=true_class %>-tab" 
-                                    id="<%=true_class %>-tab" 
+                                    href="#<%=true_class %>" 
                                     role="tab" 
                                     aria-controls="#<%=true_class %>" 
-                                    aria-selected="<% if (true_class == @selected_class) %>true<% else %>false<%end%>">
+                                    aria-selected="<% if (index == 0) %>true<% else %>false<%end%>">
                                     <%=true_class %>
                                 </a>
                             <% end %>
@@ -61,7 +59,7 @@
                         <div class="tab-content" id="nav-tabContent">
                             <% @true_classes.each_with_index do |true_class, index| %>
                                 <div class="tab-pane fade<% if (index == 0) %> show active<%end%>"
-                                    id="<%=true_class %>"
+                                    id="<%=true_class %>" 
                                     role="tabpanel" 
                                     aria-labelledby="<%=true_class %>-tab">
                                     <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
@@ -139,7 +137,6 @@
         $("#Date1").datepicker();
         $("#Date2").datepicker();
         $("#Date3").datepicker();
-
         function addElement() {
             var div = document.createElement("div");
             div.innerHTML += `<div id=${num}> <label>Availability ${num}:</label> <input name="Date${num}" id="Date${num}" type="text" placeholder="Select Date"> <input name="Time${num}" id="Time${num}" type="time" placeholder="HH:MM am/pm"> <input name="Location${num}" id="Location${num}" type="text" placeholder="Location"> <input name="remove${num}" id="remove${num}" type="button" value="x" onclick="removeElement(${num});"> </div>`;
@@ -147,7 +144,6 @@
             $("#Date" + num.toString()).datepicker();
             num += 1;
         }
-
         function removeElement(removeID) {
             // Removes an element from the document
             if (num - 1 > removeID) {
