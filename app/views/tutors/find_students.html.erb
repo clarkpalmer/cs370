@@ -42,7 +42,7 @@
                     <nav>
                         <div class="nav nav-tabs card-header-tabs mx-auto text-center" id="nav-tab" role="tablist">
                             <% @true_classes.each_with_index do |true_class, index| %>
-                                <a class="nav-item nav-link<% if (index == 0) %> active<% end %>" 
+                                <a class="nav-item nav-link<% if (true_class == @selected_class) %> active<% end %>" 
                                     id="<%=true_class %>-tab"
                                     name="<%=true_class %>-tab"
                                     data-toggle="tab" 
@@ -50,7 +50,7 @@
                                     id="<%=true_class %>-tab" 
                                     role="tab" 
                                     aria-controls="#<%=true_class %>" 
-                                    aria-selected="<% if (index == 0) %>true<% else %>false<%end%>">
+                                    aria-selected="<% if (true_class == @selected_class) %>true<% else %>false<%end%>">
                                     <%=true_class %>
                                 </a>
                             <% end %>

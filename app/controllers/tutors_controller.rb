@@ -11,6 +11,10 @@ class TutorsController < ApplicationController
   end
 
   def find_students
+    if params.has_key?(:class)
+      @selected_class = params[:class] 
+    else
+      @selected_class = [Course.find_by_semester(Course.current_semester)][0]
   end
 
   # GET /tutors/1
