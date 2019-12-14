@@ -17,6 +17,18 @@ class TutorsController < ApplicationController
   # GET /tutors/1.json
   def show
     @tutor = Tutor.find_by_id(params[:id])
+    @meetings = Meeting.where("set_time > ? and tutor_id = ?", Time.now, params[:id])
+
+    @test = Request.all
+    @testing = @test.map{|req| req.evaluation.nil?}
+    @abc = @testing.last
+
+    @meeting_times = @meetings.map{|meet| meet.set_time.strftime("%A %d at %l:%M %p")}
+    @meeting_locations = @meetings.map{|meet| meet.set_location.titleize}
+    @meeting_tutees = @meetings.map{|meet| Tutee.find_by_id(meet.tutee_id)}
+    @meeting_emails = @meeting_tutees.map{|tutee| tutee.email}
+    @meeting_names = @meeting_tutees.map{|tutee| tutee.first_name + " " + tutee.last_name}
+    
   end
 
   # GET /tutors/new
@@ -140,7 +152,7 @@ class TutorsController < ApplicationController
       BerkeleyClass.all_classes.each do |current_class|
         params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
       end
-     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
+     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8, :UPPERDIV, :OTHER) #maybe store this list as a constant
     end
 
 

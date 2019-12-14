@@ -29,18 +29,13 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
     @bc = BerkeleyClass.new(classes_params)
     @bc.save
     @tutor.berkeley_classes_id = @bc.id
-      if @tutor.save
-        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-        puts 'tutor created'
-        respond_to do |format|
-          flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-          params[:id] = @tutor.id
-          format.html { redirect_to tutor_path(@tutor.id)}
-        end
-      else
-        flash[:notice] = "Tutor was not successfully created."
-        redirect_to new_tutor_path
-      end
+    if @tutor.save
+      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
+    else
+      flash[:notice] = "Account was not successfully created"
+    end
+
+    redirect_to new_tutor_session_path
   end
 
   def tutor_params
@@ -52,7 +47,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
     BerkeleyClass.all_classes.each do |current_class|
       params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
     end
-   params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
+   params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8, :UPPERDIV, :OTHER) #maybe store this list as a constant
   end
 
   # GET /resource/edit

@@ -23,7 +23,7 @@ Then /can see my evaluation form with status(.*)/ do |name|
 end
 
 
-Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" feedback "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat,feed|
+Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" feedback "(.*)" and set time "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat,feed, settime|
   tutee = Tutee.find_by_first_name(first_name)
   tutor = Tutor.find_by_first_name(tutorname)
   request = Request.new()
@@ -40,6 +40,40 @@ Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request hav
   meeting.request_id = request.id
   meeting.tutor_id = tutor.id
   meeting.evaluation_id = eval.id
+  if not settime == "nil"
+    meeting.set_time = Time.parse(settime)
+  end
+  meeting.save!
+
+end
+
+
+Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" times "(.*)" and locations "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, times, locations|
+  tutee = Tutee.find_by_first_name(first_name)
+  tutor = Tutor.find_by_first_name(tutorname)
+  request = Request.new()
+  puts "Tutee id"
+  puts tutee.first_name
+  request.tutee_id = tutee.id
+  course = Course.find_by_name(coursename)
+  course.name = coursename
+  puts "course id"
+  request.course_id = course.id
+  puts course.id
+  request.save!
+  eval = Evaluation.new()
+  eval.status = stat
+  eval.save!
+  meeting = Meeting.new()
+  meeting.request_id = request.id
+  meeting.times = times.split(",")
+  meeting.locations = locations.split(",")
+
+  puts request.id 
+  meeting.tutor_id = tutor.id
+  puts tutor.id
+  meeting.evaluation_id = eval.id
+  puts eval.id
   meeting.save!
 
 end

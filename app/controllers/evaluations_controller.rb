@@ -10,11 +10,18 @@ class EvaluationsController < ApplicationController
   def edit
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.friendly.find params[:id]
+    @meeting = Meeting.where("evaluation_id = ?", @evaluation.id).first
+    if not @meeting.nil? and not @meeting.set_time.nil?
+      @is_eval_available = @meeting.set_time < Time.now
+    else
+      @is_eval_available = false
+    end
   end
 
   def update
     @evaluation = Evaluation.find_by_hash_id params[:id]
     @evaluation.update(evaluation_params)
+    puts evaluation_params
 
     if params.has_key?(:tutee_id)
       _update_params_has_key_helper(:tutee_id, @evaluation)
