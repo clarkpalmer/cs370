@@ -56,6 +56,8 @@ class EvaluationsController < ApplicationController
 
   def public_edit
      @evaluation = Evaluation.find_by_hash_id params[:id]
+     @meeting = Meeting.where("evaluation_id = ?", params[:id])
+     @is_eval_available = @meeting.set_time < Time.now
   end
 
   def public_show
