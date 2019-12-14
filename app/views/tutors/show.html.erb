@@ -5,6 +5,9 @@
 <%= javascript_tag "meeting_names = #{@meeting_names.to_json.html_safe};" %>
 <%= javascript_tag "meeting_emails = #{@meeting_emails.to_json.html_safe};" %>
 <%= javascript_tag "meeting_locations = #{@meeting_locations.to_json.html_safe};" %>
+<%= javascript_tag "meeting_evals_status = #{@meeting_evals_status.to_json.html_safe};" %>
+<%= javascript_tag "meeting_evals_took_place = #{@meeting_evals_took_place.to_json.html_safe};" %>
+
 
 <%= stylesheet_link_tag "tutors" %>
 <%= stylesheet_link_tag "dataTables.bootstrap4.min.css" %>
@@ -184,7 +187,19 @@
     }
     for (index = 0; index < meeting_times.length; index++) { 
         var div = document.createElement("div");
-        div.innerHTML += `<li style="padding-top: 16px;"> Meeting with ${meeting_names[index]} ${meeting_times[index]} <div>Location: ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div> </li>`;
+        var eval_status = meeting_evals_status[index]
+        var eval_took_place = meeting_evals_took_place[index]
+        if (eval_status != "Pending") {
+            document.write(eval_took_place)
+            if (eval_took_place) {
+                eval_status = "Evaluation Completed"
+            } else {
+                eval_status = "Cancelled"
+            }
+        } else {
+            eval_status = "Evaluation Pending"
+        }
+        div.innerHTML += `<li style="padding-top: 16px;"> ${meeting_names[index]} ${meeting_times[index]} at ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div> <div>Status: ${eval_status}</div></li>`;
         document.getElementById('testing').appendChild(div);
     } 
 </script>
