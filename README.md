@@ -123,7 +123,16 @@ To deploy the application to heroku start first by creating a [Heroku](https://s
 When you have an account follow this [heroku guide deployment guide](https://devcenter.heroku.com/articles/git).
 And thats how you deploy to heroku using git.
 
-After the application it up and running in heroku, you are going to want to create an admin to set the semester and begin using the application.
+After the application is up and running in heroku, seed the database with the default courses.
+To do this, run the following in the git repository linked to heroku
+```
+$ heroku restart
+$ heroku pg:reset DATABASE
+$ heroku run rake db:migrate
+$ heroku run rake db:seed
+```
+
+Next, create an admin to set the semester and begin using the application.
 To create an admin, run the following in the git repository linked to heroku.
 ```
 $ heroku run rails c
