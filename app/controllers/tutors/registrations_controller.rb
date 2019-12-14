@@ -32,7 +32,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
     if @tutor.save
       flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
-      flash[:notice] = "Account was not successfully created."
+      flash[:notice] = "Account was not successfully created"
     end
 
     redirect_to new_tutor_session_path
