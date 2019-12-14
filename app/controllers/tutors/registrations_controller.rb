@@ -35,12 +35,12 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
         respond_to do |format|
           flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
           params[:id] = @tutor.id
-          format.html { redirect_to tutor_path(@tutor.id)}
         end
       else
         flash[:notice] = "Tutor was not successfully created."
-        redirect_to new_tutor_path
       end
+
+      redirect_to new_tutor_path
   end
 
   def tutor_params
