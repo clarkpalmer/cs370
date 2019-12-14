@@ -45,7 +45,8 @@
                                 <a class="nav-item nav-link<% if (index == 0) %> active<% end %>" 
                                     id="<%=true_class %>-tab"
                                     data-toggle="tab" 
-                                    href="#<%=true_class %>" 
+                                    href="#<%=true_class %>-tab" 
+                                    id="<%=true_class %>-tab" 
                                     role="tab" 
                                     aria-controls="#<%=true_class %>" 
                                     aria-selected="<% if (index == 0) %>true<% else %>false<%end%>">
@@ -59,7 +60,7 @@
                         <div class="tab-content" id="nav-tabContent">
                             <% @true_classes.each_with_index do |true_class, index| %>
                                 <div class="tab-pane fade<% if (index == 0) %> show active<%end%>"
-                                    id="<%=true_class %>" 
+                                    id="<%=true_class %>"
                                     role="tabpanel" 
                                     aria-labelledby="<%=true_class %>-tab">
                                     <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
