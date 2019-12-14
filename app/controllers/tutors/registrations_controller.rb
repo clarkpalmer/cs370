@@ -40,7 +40,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
         flash[:notice] = "Tutor was not successfully created."
       end
 
-      redirect_to new_tutor_path
+      redirect_to new_tutor_session_path
   end
 
   def tutor_params
