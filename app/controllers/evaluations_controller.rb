@@ -14,7 +14,7 @@ class EvaluationsController < ApplicationController
     if not @meeting.nil? and not @meeting.set_time.nil?
       @is_eval_available = @meeting.set_time < Time.now
     else
-      @is_eval_available = true
+      @is_eval_available = false
     end
   end
 
