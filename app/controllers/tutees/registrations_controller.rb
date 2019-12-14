@@ -14,9 +14,9 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   def create
     @tutee = Tutee.new(tutee_params)
     if @tutee.save
-      flash[:notice] = "#{@tutee.first_name} #{@tutee.last_name} was successfully created."
+      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
-      flash[:notice] = "Student was not successfully created."
+      flash[:notice] = "Account was not successfully created."
     end
     redirect_to new_tutee_session_path
   end

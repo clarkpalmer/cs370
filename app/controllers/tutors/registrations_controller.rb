@@ -30,9 +30,9 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
     @bc.save
     @tutor.berkeley_classes_id = @bc.id
     if @tutor.save
-      flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
-      flash[:notice] = "Tutor was not successfully created."
+      flash[:notice] = "Account was not successfully created."
     end
 
     redirect_to new_tutor_session_path
