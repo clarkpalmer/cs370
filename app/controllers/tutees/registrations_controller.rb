@@ -19,12 +19,12 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
         puts "tutee created"
         puts @tutee.id
         params[:id] = @tutee.id
-        format.html { redirect_to tutee_path(@tutee.id)}
       end
     else
       flash[:notice] = "Student was not successfully created."
-      redirect_to new_tutee_session_path
     end
+
+    redirect_to new_tutee_session_path
   end
 
   def tutee_params
