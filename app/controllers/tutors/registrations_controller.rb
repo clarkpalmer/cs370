@@ -29,18 +29,13 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
     @bc = BerkeleyClass.new(classes_params)
     @bc.save
     @tutor.berkeley_classes_id = @bc.id
-      if @tutor.save
-        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-        puts 'tutor created'
-        respond_to do |format|
-          flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-          params[:id] = @tutor.id
-        end
-      else
-        flash[:notice] = "Tutor was not successfully created."
-      end
+    if @tutor.save
+      flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+    else
+      flash[:notice] = "Tutor was not successfully created."
+    end
 
-      redirect_to new_tutor_session_path
+    redirect_to new_tutor_session_path
   end
 
   def tutor_params
