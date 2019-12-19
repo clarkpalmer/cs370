@@ -8,8 +8,7 @@ dist: trusty
 bundler_args: --without production
 
 before_install: 
-  - ruby -v
-  - sudo gem install bundler
+  - gem install bundler --version '1.7.4'
 
 env:
   global:
