@@ -130,12 +130,12 @@ $ heroku pg:reset DATABASE` (no need to change the `DATABASE`)
 $ heroku run rake db:migrate
 $ heroku run rake db:seed
 ```
-create an admin to set the semester and begin using the application.
+Then, create an admin to set the semester and begin using the application.
 To create an admin, run the following in the git repository linked to heroku.
 ```
 $ heroku run rails c
 ```
-This will create a ruby console for the heroku app. Then simply as indicated above to create an admin.
+This will create a ruby console for the heroku app. Then, simply copy and paste the following code to create an admin.
 ```
 > Admin.create(:password => "1234", :current_semester => "Spring 2019", :statistics_semester => "Spring 2019")
 ```
