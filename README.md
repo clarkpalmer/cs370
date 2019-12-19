@@ -126,7 +126,7 @@ And thats how you deploy to heroku using git.
 After the application is up and running in heroku, reset and seed the database. You should only do this once.
 ```
 $ heroku restart
-$ heroku pg:reset DATABASE` (no need to change the `DATABASE`)
+$ heroku pg:reset DATABASE
 $ heroku run rake db:migrate
 $ heroku run rake db:seed
 ```
