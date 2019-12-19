@@ -7,6 +7,8 @@ dist: trusty
 # make sure production-only gems are not installed
 bundler_args: --without production
 
+before_install: gem install bundler
+
 env:
   global:
     # in TravisCI settings, set CCKEY to your CodeClimate Test Reporter ID:
